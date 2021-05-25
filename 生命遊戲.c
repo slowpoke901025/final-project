@@ -1,27 +1,32 @@
+//è¦å‰‡
+//ç”Ÿç‰©çš„å‘¨åœæœ‰2æˆ–3éš»ç”Ÿç‰© ç¹¼çºŒå­˜åœ¨
+// ç”Ÿç‰©çš„å‘¨åœç„¡ç”Ÿç‰©,åƒ…æœ‰1éš»,æˆ–è¶…é3éš»  æ­»äº¡
+//ç„¡ç”Ÿç‰©åœ°å€è¢«æ°å¥½3éš»åŒ…åœ  ç¹æ®–ä¸€éš»æ–°ç”Ÿç‰©
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<windows.h> 
 #define margin 10
 #define num 50
 
-				/**********ÅÜ¼Æ,°}¦C,µ²ºc***********/ 
+				/**********è®Šæ•¸,é™£åˆ—,çµæ§‹***********/ 
 
-struct creature //¥Íª« 
+struct creature //ç”Ÿç‰© 
 {
-	int x;//¦ì¸m 
+	int x;//ä½ç½® 
 	int y;
-	int alive;//¬O§_¦s¬¡ 
+	int alive;//æ˜¯å¦å­˜æ´» 
 }ET[50];
 
-int map[margin+2][margin+2]={};//¬ö¿ı¦a¹Ï,0¬°µL¥Íª«,1¬°¦³¥Íª« 
-int change;//¬ö¿ı¦a¹Ï¬O§_¦³ÅÜ¤Æ 
-double speed;//±±¨îµe­±§ó·s³t«× 
+int map[margin+2][margin+2]={};//ç´€éŒ„åœ°åœ–,0ç‚ºç„¡ç”Ÿç‰©,1ç‚ºæœ‰ç”Ÿç‰© 
+int change;//ç´€éŒ„åœ°åœ–æ˜¯å¦æœ‰è®ŠåŒ– 
+double speed;//æ§åˆ¶ç•«é¢æ›´æ–°é€Ÿåº¦ 
 
 
 
-				/**********¨ç¦¡***********/ 
+				/**********å‡½å¼***********/ 
 
-void gotoxy(int x,int y)//´å¼Ğ¦ì²¾(windows.h) 
+void gotoxy(int x,int y)//æ¸¸æ¨™ä½ç§»(windows.h) 
 {
  HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -35,7 +40,7 @@ void gotoxy(int x,int y)//´å¼Ğ¦ì²¾(windows.h)
 }
 
 
-int exist(int x,int y)//§PÂ_¬O§_¦³¥Íª«¦s¦b,­Y¦³¦^¶Ç¨äindex,«D«h-1 
+int exist(int x,int y)//åˆ¤æ–·æ˜¯å¦æœ‰ç”Ÿç‰©å­˜åœ¨,è‹¥æœ‰å›å‚³å…¶index,éå‰‡-1 
 {
 	for(int i=0;i<num;i++)
 	{
@@ -52,21 +57,21 @@ int exist(int x,int y)//§PÂ_¬O§_¦³¥Íª«¦s¦b,­Y¦³¦^¶Ç¨äindex,«D«h-1
 }
 
 
-void printMap()//¦L¥X¥Ø«e¥ÍºA±¡ªp 
+void printMap()//å°å‡ºç›®å‰ç”Ÿæ…‹æƒ…æ³ 
 {
-	for(int i=1;i<=margin;i++)//®y¼Ğy 
+	for(int i=1;i<=margin;i++)//åº§æ¨™y 
 	{
-		for(int j=1;j<=margin;j++)//®y¼Ğx 
+		for(int j=1;j<=margin;j++)//åº§æ¨™x 
 		{
-			if(exist(j,i)>=0)//¦s¦b 
+			if(exist(j,i)>=0)//å­˜åœ¨ 
 			{
-				printf("¡´");
-				map[i][j]=1;//¬ö¿ı¨ì¦a¹Ï -->¥Î©ó§PÂ_¤U¤@¥@¥N±¡ªp
+				printf("â—");
+				map[i][j]=1;//ç´€éŒ„åˆ°åœ°åœ– -->ç”¨æ–¼åˆ¤æ–·ä¸‹ä¸€ä¸–ä»£æƒ…æ³
 			}
-			else//¤£¦s¦b 
+			else//ä¸å­˜åœ¨ 
 			{
-				printf("¡³");
-				map[i][j]=0;//¬ö¿ı¨ì¦a¹Ï
+				printf("â—‹");
+				map[i][j]=0;//ç´€éŒ„åˆ°åœ°åœ–
 			}
 		}
 		puts("");
@@ -75,14 +80,14 @@ void printMap()//¦L¥X¥Ø«e¥ÍºA±¡ªp
 }
 
 
-int nb(int x,int y) //¦^¶Ç¤E®c®æ¤º¥Íª«¼Æ¶q 
+int nb(int x,int y) //å›å‚³ä¹å®®æ ¼å…§ç”Ÿç‰©æ•¸é‡ 
 {
 	int n = 0;
 	for(int i=y-1;i<=y+1;i++)
 	{
 		for(int j=x-1;j<=x+1;j++)
 		{
-			if(map[i][j]>0)//¦³¥Íª«¦s¦b 
+			if(map[i][j]>0)//æœ‰ç”Ÿç‰©å­˜åœ¨ 
 			{
 				n++;
 			}
@@ -90,7 +95,7 @@ int nb(int x,int y) //¦^¶Ç¤E®c®æ¤º¥Íª«¼Æ¶q
 	}
 	if(map[y][x]>0)
 	{
-		return n-1;//·|ºâ¨ì¦Û¤v¬G-1 
+		return n-1;//æœƒç®—åˆ°è‡ªå·±æ•…-1 
 	}
 	else
 	{
@@ -99,7 +104,7 @@ int nb(int x,int y) //¦^¶Ç¤E®c®æ¤º¥Íª«¼Æ¶q
 	
 }
 
-int born(int x,int y) //Ác´Ş·s¥Íª« 
+int born(int x,int y) //ç¹æ®–æ–°ç”Ÿç‰© 
 {
 	for(int i=0;i<num;i++)
 	{
@@ -113,65 +118,65 @@ int born(int x,int y) //Ác´Ş·s¥Íª«
 	}
 }
 
-void Evolution() // ¶i¦æºt¤Æ 
+void Evolution() // é€²è¡Œæ¼”åŒ– 
 {
-	for(int i=1;i<=margin;i++)//®y¼Ğy 
+	for(int i=1;i<=margin;i++)//åº§æ¨™y 
 	{
-		for(int j=1;j<=margin;j++)//®y¼Ğx 
+		for(int j=1;j<=margin;j++)//åº§æ¨™x 
 		{
-			if(map[i][j]>0)//¸Ó®y¼Ğ¥Ø«e¦³¥Íª« 
+			if(map[i][j]>0)//è©²åº§æ¨™ç›®å‰æœ‰ç”Ÿç‰© 
 			{
-				if(nb(j,i)<2||nb(j,i)>3)//©P³ò¥Íª«¤p©ó2©Î¤j©ó3 
+				if(nb(j,i)<2||nb(j,i)>3)//å‘¨åœç”Ÿç‰©å°æ–¼2æˆ–å¤§æ–¼3 
 				{
-					int index = exist(j,i);//¨ú±oindex 
-					ET[index].alive = 0;// ¦º¤` 
-					change++;//¦a¹Ï¦³§ïÅÜ 
+					int index = exist(j,i);//å–å¾—index 
+					ET[index].alive = 0;// æ­»äº¡ 
+					change++;//åœ°åœ–æœ‰æ”¹è®Š 
 				}
 			}
-			else//¸Ó®y¼Ğ¥Ø«eµL¥Íª« 
+			else//è©²åº§æ¨™ç›®å‰ç„¡ç”Ÿç‰© 
 			{
-				if(nb(j,i)==3)//©P³ò¥Íª««ê¦³3°¦ 
+				if(nb(j,i)==3)//å‘¨åœç”Ÿç‰©æ°æœ‰3éš» 
 				{
-					born(j,i); //¦b¸Ó®y¼Ğ¤WÁc´Ş·s¥Íª« 
-					change++; //¦a¹Ï¦³§ïÅÜ 
+					born(j,i); //åœ¨è©²åº§æ¨™ä¸Šç¹æ®–æ–°ç”Ÿç‰© 
+					change++; //åœ°åœ–æœ‰æ”¹è®Š 
 				}
 			}
 		}
 	}
 } 
 
-				/*****¥D¨ç¦¡*****/ 
+				/*****ä¸»å‡½å¼*****/ 
 				
 int main()
 {	
-	puts("**½Ğ¿é¤J10²Õ®y¼Ğ (1,1) ~ (10,10)**\n");
-	for(int i=0;i<10;i++)//¿é¤J10²Õ®y¼Ğ,©ó¹ïÀ³®y¼Ğ²£¥Í¥Íª« 
+	puts("**è«‹è¼¸å…¥10çµ„åº§æ¨™ (1,1) ~ (10,10)**\n");
+	for(int i=0;i<10;i++)//è¼¸å…¥10çµ„åº§æ¨™,æ–¼å°æ‡‰åº§æ¨™ç”¢ç”Ÿç”Ÿç‰© 
 	{
-		printf("®y¼Ğ %d (x,y):",i+1);
+		printf("åº§æ¨™ %d (x,y):",i+1);
 		scanf("%d%d",&ET[i].x,&ET[i].y);
 		ET[i].alive = 1;
 	}
-	puts("\n**¥ÍºA¨t**");
+	puts("\n**ç”Ÿæ…‹ç³»**");
 	while(1)
 	{
-		if(speed==0)//speed¬°0®É¤~°õ¦æ 
+		if(speed==0)//speedç‚º0æ™‚æ‰åŸ·è¡Œ 
 		{
 			gotoxy(0,15);
 			printMap();
 			Evolution();
 	
-			if(!change)//¦a¹Ï¨S§ïÅÜ--> ¥ÍºA¹F¨ì¥­¿Å or ¥ÍºA¨t¥Ë¸Ñ  
+			if(!change)//åœ°åœ–æ²’æ”¹è®Š--> ç”Ÿæ…‹é”åˆ°å¹³è¡¡ or ç”Ÿæ…‹ç³»ç“¦è§£  
 			{
-				system("pause");//°±¤î 
+				system("pause");//åœæ­¢ 
 			}
 			else
 			{
-				change = 0;//Âk¹s 
+				change = 0;//æ­¸é›¶ 
 			}
 	
-			speed =200000000;//­«»s³t«× 
+			speed =200000000;//é‡è£½é€Ÿåº¦ 
 		}
-		speed--;//¨C°é´î¤Ö1 
+		speed--;//æ¯åœˆæ¸›å°‘1 
 	}
 	
 }

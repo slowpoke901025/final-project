@@ -1,0 +1,223 @@
+#include"Map.h"
+#include"Creature.h"
+struct MAP Map;
+
+void resetMap()
+{
+	for(int i=0;i<55;i++)
+	{
+		for(int j=0;j<100;j++)
+		{
+			Map.main[i][j]=0;
+			Map.vice[i][j]=0;
+			Map.treasure[i][j]=0;
+		}
+	}
+}
+
+void setMap(int Map[][100],int mapT[][100],int level)
+{
+	
+	switch(level)
+	{
+		case 0:
+
+			mapT[14][57]=1;
+			mapT[18][61]=1;
+			mapT[8][15]=1;
+			mapT[24][15]=1;
+			mapT[16][28]=2;
+			mapT[16][33]=1;
+			mapT[12][85]=1;
+			mapT[20][78]=2;
+			mapT[7][41]=2;
+			mapT[22][46]=1;
+			line(0,30,Map);
+			longstair(0,30,Map);
+			cup(0,30,Map);
+			shortstair(0,30,Map);
+			threespace(0,30,Map);
+			h(0,30,Map);
+			light(0,30,Map);
+			big(0,30,Map);
+			break;
+		case 1:
+			mapT[4][20]=1;
+			mapT[18][30]=2;
+			mapT[18][38]=1;
+			mapT[34][38]=1;
+			mapT[33][31]=1;
+			mapT[34][54]=1;
+			mapT[34][62]=2;
+			mapT[18][54]=1;
+			mapT[18][62]=1;
+			mapT[26][46]=2;
+			mapT[48][72]=1;
+			mapT[4][72]=2;
+			mapT[48][20]=2;
+			fur(12,51,Map);
+			fur(74,51,Map);
+			fur(39,51,Map);
+			fur(47,51,Map);
+			furU(12,1,Map);
+			furU(39,1,Map);
+			furU(47,1,Map);
+			furU(74,1,Map);
+			germ(83,51,Map);
+			germ(2,51,Map);
+			germ(27,51,Map);
+			germ(58,51,Map);
+			germU(83,1,Map);
+			germU(2,1,Map);
+			germU(27,1,Map);
+			germU(58,1,Map);
+			octapole(84,35,Map);
+			octapole(76,43,Map);
+			octapole(68,51,Map);
+			octapole(1,24,Map);
+			octapole(9,16,Map);
+			octapole(17,8,Map);
+			octapoleR(1,28,Map);
+			octapoleR(9,36,Map);
+			octapoleR(17,44,Map);
+			octapoleR(68,1,Map);
+			octapoleR(76,9,Map);
+			octapoleR(84,17,Map); 
+			circle(38,9,Map);
+			triangleR(76,26,Map);
+			triangle(16,26,Map);
+			break;
+		case 2:
+			mapT[11][11]=1;
+			mapT[17][17]=1;
+			mapT[33][48]=1;
+			mapT[27][44]=1;
+			mapT[16][76]=1;
+			mapT[12][80]=1;
+			mapT[34][11]=2;
+			mapT[34][81]=2;
+			furU(1,1,Map);
+			furU(8,1,Map);
+			furU(15,1,Map);
+			furU(22,1,Map);
+			furU(29,1,Map);
+			furU(36,1,Map);
+			furU(43,1,Map);
+			furU(50,1,Map);
+			furU(57,1,Map);
+			furU(64,1,Map);
+			furU(71,1,Map);
+			furU(78,1,Map);
+			furU(85,1,Map);
+			fur(1,43,Map);
+			fur(8,43,Map);
+			fur(15,43,Map);
+			fur(22,43,Map);
+			fur(29,43,Map);
+			fur(36,43,Map);
+			fur(43,43,Map);
+			fur(50,43,Map);
+			fur(57,43,Map);
+			fur(64,43,Map);
+			fur(71,43,Map);
+			fur(78,43,Map);
+			fur(85,43,Map);
+			furL(1,7,Map);
+			furL(1,15,Map);
+			furL(1,23,Map);
+			furL(1,31,Map);
+			furR(91,7,Map);
+			furR(91,15,Map);
+			furR(91,23,Map);
+			furR(91,31,Map);
+			aaa(10,8,Map);
+			bbb(9,7,Map);
+			aaa(26,24,Map);
+			bbb(25,-9,Map);
+			aaa(42,8,Map);
+			bbb(41,7,Map);
+			aaa(58,24,Map);
+			bbb(57,-9,Map);
+			aaa(74,8,Map);
+			bbb(73,7,Map);
+			break;
+		case 3:
+			mapT[11][11]=2;
+			mapT[16][18]=1;
+			mapT[37][17]=2;
+			mapT[34][12]=1;
+			mapT[7][39]=1;
+			mapT[45][39]=1;
+			mapT[17][48]=1;
+			mapT[35][48]=2;
+			mapT[17][30]=2;
+			mapT[35][30]=1;
+			
+			mapT[25][69]=1;
+			mapT[25][72]=2;
+			sa(1,22,Map);
+			saR(1,27,Map);
+			d(6,20,Map);
+			dR(6,29,Map);
+			line1(26,25,Map);
+			line1(52,25,Map);
+			df(29,37,Map);
+			bc(39,13,Map);
+			bc(39,51,Map);
+			st(54,11,Map);
+			st(54,45,Map);
+			run(57,34,Map);
+			hat(60,10,Map);
+			hat(77,10,Map);
+			hat(60,38,Map);
+			hat(77,38,Map);
+			sc(73,10,Map);
+			sc(68,10,Map);
+			sc(73,14,Map);
+			sc(68,14,Map);
+			sc(68,38,Map);
+			sc(73,38,Map);
+			sc(68,42,Map);
+			sc(73,42,Map);
+			bsq(86,13,Map);
+			bsq(86,43,Map);
+			la(93,15,Map);
+			laR(93,35,Map);
+			break;
+		case 4:
+			mapT[11][7]=2;
+			mapT[6][7]=2;
+			mapT[11][62]=2;
+			mapT[6][62]=2;
+			mapT[1][62]=1;
+			mapT[16][7]=1;
+			mapT[16][62]=1;
+			mapT[1][7]=1;
+			mapT[7][24]=1;
+			mapT[7][31]=1;
+			mapT[7][38]=1;
+			mapT[7][45]=1;
+			mapT[9][24]=1;
+			mapT[9][31]=1;
+			mapT[9][38]=1;
+			mapT[9][45]=1;
+			
+			flower(6,5,Map);
+			line2(13,4,Map);
+			line2(13,12,Map);
+			line1(18,12,Map);
+			line1(18,2,Map);
+			line2(17,8,Map);
+			tank(22,3,Map);		
+			reverse_tank(29,3,Map);			
+			tank(36,3,Map);
+			reverse_tank(43,3,Map);
+			line1(51,12,Map);
+			line1(51,2,Map);
+			line2(50,8,Map);
+			line2(54,4,Map);
+			line2(54,12,Map);
+			flower(61,5,Map);
+			break;	
+	}	
+}

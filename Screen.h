@@ -1,0 +1,9 @@
+void printScreen(int[][100]);
+void story();
+void showBeforeRun(int);
+void printResult(int);
+void startUp();
+void fail();
+void showBoard();
+void animationEnd();
+void animationStart();
